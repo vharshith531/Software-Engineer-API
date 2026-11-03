@@ -1,0 +1,22 @@
+
+  services:
+    db:
+      image: postgres:16
+      ports:
+        - "5333:5432"
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: root
+        POSTGRES_DB: mydatabase
+      networks:
+        - db
+      volumes:
+        - db-data:/var/lib/postgresql/data
+      restart: unless-stopped
+
+  networks:
+    db:
+      driver: bridge
+
+  volumes:
+    db-data:
